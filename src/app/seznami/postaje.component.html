@@ -1,0 +1,35 @@
+<h2>Seznam polnilnih postaj</h2>
+<button class="button" (click)="naprej()">Dodaj postajo</button>
+
+<ul>
+   <li *ngFor="let postaja of postaje">
+       <span>ID postaje: {{postaja.id_postaja}}</span>
+       <button class="button" (click)="getTerminiByPostajaId(postaja.id_postaja); $event.stopPropagation()">Termini</button>
+       <button class="button-delete" (click)="delete(postaja); osveziPostaje(); $event.stopPropagation()">Izbriši postajo</button>
+       <br>
+       <span>Naziv: {{postaja.ime}}, </span>
+       <span>Cena: {{postaja.cena}}	&euro; za 15 min polnjenja</span>
+       <br>
+       <span>Lokacija: {{postaja.lokacija}}, </span>
+       <span>Moč: {{postaja.moc}} kW, </span>
+       <span>Status: </span>
+       <span *ngIf="postaja.na_voljo == true">na voljo</span>
+       <span *ngIf="postaja.na_voljo == false">ni na voljo</span>
+       <br>
+       <span *ngIf="postaja.porocilo">Info: {{postaja.porocilo}}</span>
+   </li>
+    <div *ngIf="termini">
+        <h3>Seznam terminov za izbrano postajo</h3>
+        <ul>
+            <li *ngFor="let termin of termini">
+                <span>ID termina: {{termin.id_termin}}</span>
+                <br>
+                <span>Začetek: {{termin.termin_od | slice:0:10 | date: 'dd/MM/yyyy'}}, </span>
+                <span>Ura: {{termin.termin_od | slice:11:16}}</span>
+                <br>
+                <span>Konec: {{termin.termin_do | slice:0:10 | date: 'dd/MM/yyyy'}}, </span>
+                <span>Ura: {{termin.termin_do | slice:11:16}}</span>
+            </li>
+        </ul>
+    </div>
+</ul>

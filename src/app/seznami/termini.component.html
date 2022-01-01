@@ -1,0 +1,20 @@
+<h2>Seznam terminov</h2>
+<button class="button" (click)="naprej()">Dodaj termin</button>
+
+<ul>
+    <li *ngFor="let termin of termini">
+        <span>ID termina: {{termin.id_termin}}</span>
+        <button class="button-delete" (click)="delete(termin); osveziTermine(); $event.stopPropagation()">Izbriši termin</button>
+        <br>
+        <span>Začetek: {{termin.termin_od | slice:0:10 | date: 'dd/MM/yyyy'}}, </span>
+        <span>Ura: {{termin.termin_od | slice:11:16}}</span>
+        <br>
+        <span>Konec: {{termin.termin_do | slice:0:10 | date: 'dd/MM/yyyy'}}, </span>
+        <span>Ura: {{termin.termin_do | slice:11:16}}</span>
+        <br>
+        <span>Postaja: {{termin.postaja.id_postaja}}, </span>
+        <span>Lokacija: {{termin.postaja.lokacija}}</span>
+        <br>
+        <span>Uporabnik: {{termin.uporabnik.uporabnisko_ime}}</span>
+    </li>
+</ul>
